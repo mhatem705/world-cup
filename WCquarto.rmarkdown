@@ -1,0 +1,53 @@
+---
+title: "World Cup exploration"
+author: "Mark Hatem"
+format: html
+editor: visual
+---
+
+```{r}
+#| echo: false
+#| include: false
+# set up
+library(tidyverse)
+library(worldcup)
+library(plotly)
+
+goalTeamTime <- goals %>% 
+  select(team_name,match_date, minute_regulation: penalty)
+```
+
+
+Examining when goals are most frequently scored
+
+```{r}
+#| echo: false
+
+goalTeamTime %>% 
+  mutate(minute = minute_regulation + minute_stoppage,
+         match_period = case_when(match_period == "first half, stoppage time" ~ "first half",
+                                  match_period == "second half, stoppage time" ~ "second half",
+                                  match_period == "extra time, first half" ~ "extra time",
+                                  match_period == "extra time, second half" ~ "extra time",
+                                  match_period == "extra time, second half, stoppage time" ~ "extra time",
+                                  T ~ match_period
+                                  )) %>% 
+  group_by(minute) %>% 
+  mutate(goals = n()) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = minute, y = goals, color = match_period)) +
+  geom_point()
+```
+
+
+How many goals has each country scored all time? (min 10)
+
+```{r}
+#| echo: false
+goalTeamTime %>% 
+  count(team_name) %>% 
+  filter(n > 10) %>% 
+  ggplot(aes(x = n, y = team_name)) +
+  geom_bar(stat = 'identity')
+
+```
