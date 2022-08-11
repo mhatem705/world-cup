@@ -1,0 +1,19 @@
+---
+title: "World Cup exploration"
+author: "Mark Hatem"
+format: html
+editor: visual
+---
+
+
+
+```{r}
+#| echo: false
+# set up
+library(tidyverse)
+library(worldcup)
+
+goalTeamTime <- goals %>% 
+  select(team_name, minute_regulation: penalty)
+```
+
