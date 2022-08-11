@@ -1,8 +1,17 @@
 ---
 title: "World Cup exploration"
-author: "Mark Hatem"
-format: html
-editor: visual
+  name: "world cup"
+  output_dir: "docs"
+  navbar:
+    title: "World Cup"
+    left:
+    - text: "Home"
+        href: index.html
+    - text: "World Cup"
+        href: WCquarto.html
+  output:
+    html_document:
+      theme: cosmo
 ---
 
 
