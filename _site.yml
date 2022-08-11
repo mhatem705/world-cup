@@ -1,0 +1,15 @@
+name: "wc"
+output_dir: "docs"
+navbar:
+  title: "World Cup"
+  left:
+  - text: "Home"
+    href: index.html
+  - text: "plot"
+    href: WCquarto.html
+output: 
+  html_document:
+    theme: cosmo
+    
+    
+    
