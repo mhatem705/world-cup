@@ -7,6 +7,7 @@ title: "World Cup exploration"
 ```{r}
 #| echo: false
 #| include: false
+#| new comment
 # set up
 library(tidyverse)
 library(worldcup)
